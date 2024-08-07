@@ -9,6 +9,7 @@ BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 BUILD_BROKEN_INCORRECT_PARTITION_IMAGES := true
 
 COMMON_PATH := device/oneplus/sm8650-common
+KERNEL_PATH := device/oneplus/corvette-kernel
 
 # A/B
 AB_OTA_UPDATER := true
@@ -121,9 +122,23 @@ BOARD_KERNEL_IMAGE_NAME := Image
 KERNEL_LTO := none
 
 TARGET_FORCE_PREBUILT_KERNEL := true
-TARGET_KERNEL_SOURCE := kernel/oneplus/sm8650
-TARGET_KERNEL_CONFIG := \
-    gki_defconfig \
+TARGET_NO_KERNEL_OVERRIDE := true
+
+TARGET_KERNEL_SOURCE := $(KERNEL_PATH)/kernel-headers
+
+BOARD_SYSTEM_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.system_dlkm))
+BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(COMMON_PATH)/modules.blocklist
+BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load))
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES_BLOCKLIST_FILE := $(BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE)
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.vendor_boot))
+BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery))
+BOOT_KERNEL_MODULES := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery $(COMMON_PATH)/modules.include.vendor_ramdisk))
+SYSTEM_KERNEL_MODULES := $(strip $(shell cat $(COMMON_PATH)/modules.include.system_dlkm))
+
+#TARGET_FORCE_PREBUILT_KERNEL := true
+#TARGET_KERNEL_SOURCE := kernel/oneplus/sm8650
+#TARGET_KERNEL_CONFIG := \
+#    gki_defconfig \
 #    vendor/pineapple_GKI.config \
 #    vendor/oplus/pineapple_GKI.config \
 #    vendor/debugfs.config
