@@ -93,6 +93,7 @@
     </hal>
     <hal format="aidl" optional="true">
         <name>vendor.pixelworks.hardware.display</name>
+        <version>1-2</version>
         <interface>
             <name>IIris</name>
             <instance>default</instance>

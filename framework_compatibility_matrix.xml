@@ -1,0 +1,27 @@
+<compatibility-matrix version="2.0" type="framework" target-level="8">
+    <hal format="aidl">
+        <name>android.hardware.health</name>
+        <version>3</version>
+        <interface>
+            <name>IHealth</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl">
+        <name>vendor.oplus.hardware.communicationcenter</name>
+        <version>2</version>
+        <interface>
+            <name>IDmtpService</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl">
+        <name>vendor.oplus.hardware.stability.oplus_project</name>
+        <version>2</version>
+        <interface>
+            <name>IOplusProject</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+</compatibility-matrix>
+
