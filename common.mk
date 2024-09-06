@@ -299,6 +299,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.identity-V5-ndk.vendor
 
+# IMS
+PRODUCT_PACKAGES += \
+    ims
+
 # Keymaster
 PRODUCT_PACKAGES += \
     android.hardware.hardware_keystore.xml \
